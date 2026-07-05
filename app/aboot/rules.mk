@@ -33,3 +33,8 @@ ifeq ($(FASTBOOT_TIMER),1)
 OBJS += \
 	$(LOCAL_DIR)/fastboot_timer.o
 endif
+
+ifeq ($(FASTBOOT_LED),1)
+OBJS += \
+	$(LOCAL_DIR)/fastboot_led.o
+endif

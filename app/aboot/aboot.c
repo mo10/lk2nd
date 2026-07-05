@@ -99,6 +99,10 @@
 #include "fastboot_timer.h"
 #endif
 
+#if FASTBOOT_LED
+#include "fastboot_led.h"
+#endif
+
 extern  bool target_use_signed_kernel(void);
 extern void platform_uninit(void);
 extern void target_uninit(void);
@@ -5569,6 +5573,10 @@ fastboot:
 	aboot_fastboot_register_commands();
 #if FASTBOOT_TIMER
 	fastboot_timer_register_commands();
+#endif
+#if FASTBOOT_LED
+	fastboot_led_register_commands();
+	set_fastboot_led(FASTBOOT_LED_CONFIG_BOOT);
 #endif
 	/* dump partition table for debug info */
 	if (target_is_emmc_boot())

@@ -26,6 +26,9 @@ DEFINES += BAM_V170=1
 #Enable fastboot timer
 DEFINES += FASTBOOT_TIMER=1
 FASTBOOT_TIMER := 1
+#Enable fastboot led
+DEFINES += FASTBOOT_LED=1
+FASTBOOT_LED := 1
 #Disable thumb mode
 ENABLE_THUMB := false
 
