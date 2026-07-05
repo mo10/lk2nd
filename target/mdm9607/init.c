@@ -292,9 +292,7 @@ int get_target_boot_params(const char *cmdline, const char *part, char **buf)
 
 	modem_ptn_index = ptable_get_index(ptable, "modem");
 	if (modem_ptn_index < 0) {
-		dprintf(CRITICAL,"WARN: Cannot get partition index for %s\n", part);
-		free(*buf);
-		return -1;
+		dprintf(CRITICAL,"WARN: Cannot get partition index for modem\n");
 	}
 	/* Adding command line parameters according to target boot type */
 	snprintf(*buf, buflen, UBI_CMDLINE);
@@ -305,8 +303,10 @@ int get_target_boot_params(const char *cmdline, const char *part, char **buf)
 	if (((!strncmp(cmdline, "root=", strlen("root="))) ||
 		(strstr(cmdline, " root="))))
 		dprintf(DEBUG, "DEBUG: cmdline has root=\n");
-	else
+	else if (modem_ptn_index >= 0)
 		snprintf(*buf+strlen(*buf), buflen, " root=ubi0:rootfs ubi.mtd=%d ubi.mtd=%d", system_ptn_index, modem_ptn_index);
+	else
+		snprintf(*buf+strlen(*buf), buflen, " root=ubi0:rootfs ubi.mtd=%d", system_ptn_index);
 		/*in success case buf will be freed in the calling function of this*/
 	return 0;
 }
