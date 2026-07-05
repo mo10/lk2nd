@@ -209,6 +209,8 @@ struct pm8x41_mvs
 #define PM8x41_MMP2_BASE                      0xA100
 #define PM8x41_MMP3_BASE                      0xA200
 #define PM8x41_MMP4_BASE                      0xA300
+#define PM8x41_MMP5_BASE                      0xA400
+#define PM8x41_MMP6_BASE                      0xA500
 #define PM8x41_MVS1_BASE                      0x18400
 
 void pm8x41_lpg_write(uint8_t chan, uint8_t off, uint8_t val);
